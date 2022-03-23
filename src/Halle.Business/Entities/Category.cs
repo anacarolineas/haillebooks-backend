@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Halle.Business.Entities
 {
-    public class Category
+    public class Category : Entity
     {
+        public string Name { get; set; }
+
+        /*EF Relations */
+        public IEnumerable<Book> Books { get; set; }
     }
 }

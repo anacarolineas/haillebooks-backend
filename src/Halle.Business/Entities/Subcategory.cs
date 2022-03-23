@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Halle.Business.Entities
 {
-    public class Author : Entity
+    public class Subcategory : Entity
     {
         public string Name { get; set; }
+        public Guid CategoryId { get; set; }
 
         /* EF Relations */
-        public IEnumerable<Book> Books { get; set; }
+        public Category Category { get; set; }
     }
 }

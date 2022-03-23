@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Halle.Business.Entities
 {
-    public class Author : Entity
+    public class Tag : Entity
     {
         public string Name { get; set; }
 
-        /* EF Relations */
+        /*EF Relations */
         public IEnumerable<Book> Books { get; set; }
     }
 }
