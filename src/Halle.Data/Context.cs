@@ -1,12 +1,9 @@
 ﻿using Halle.Business.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Halle.Data.Extensions;
+using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Halle.Data.Context
+namespace Halle.Data
 {
     public class Context : DbContext
     {
@@ -27,7 +24,8 @@ namespace Halle.Data.Context
                 property.SetColumnType("varchar(100)");
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(Context).Assembly);
-            
+
+            //desabilita delete cascade
             foreach (var relationship in modelBuilder.Model.GetEntityTypes()
                 .SelectMany(e => e.GetForeignKeys())) 
                 relationship.DeleteBehavior = DeleteBehavior.ClientSetNull;

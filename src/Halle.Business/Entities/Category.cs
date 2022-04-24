@@ -12,5 +12,6 @@ namespace Halle.Business.Entities
 
         /*EF Relations */
         public IEnumerable<Book> Books { get; set; }
+        public IEnumerable<Subcategory> Subcategories { get; set; }
     }
 }

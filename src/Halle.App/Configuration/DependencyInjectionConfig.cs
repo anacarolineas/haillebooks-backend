@@ -1,4 +1,4 @@
-﻿using Halle.Data.Context;
+﻿using Halle.Data;
 
 namespace Halle.App.Configuration
 {

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Halle.Business.Entities
+﻿namespace Halle.Business.Entities
 {
     public class Favorite : Entity
     {
@@ -14,5 +7,6 @@ namespace Halle.Business.Entities
 
         /*EF Relations */
         public Book Book { get; set; }
+        //public ApplicationUser User { get; set; }
     }
 }
