@@ -1,8 +1,5 @@
 ﻿using Halle.Business.Entities;
 using Microsoft.EntityFrameworkCore;
-using Halle.Data.Extensions;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Halle.Business.Interfaces;
 
 namespace Halle.Data
 {

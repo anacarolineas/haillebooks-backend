@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Halle.Business", "src\Halle
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Halle.Data", "src\Halle.Data\Halle.Data.csproj", "{07F6CE49-E264-46A9-B449-5DD1FB195761}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Halle.Application", "Halle.Application\Halle.Application.csproj", "{DD558950-339F-45CE-A2D4-C0BEF76C526B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Halle.Application", "src\Halle.Application\Halle.Application.csproj", "{DD558950-339F-45CE-A2D4-C0BEF76C526B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
