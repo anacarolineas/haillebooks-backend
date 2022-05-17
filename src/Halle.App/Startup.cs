@@ -1,5 +1,5 @@
 ﻿using Halle.App.Configuration;
-using Halle.Data.Context;
+using Halle.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace Halle.App
@@ -32,6 +32,8 @@ namespace Halle.App
             {
                 options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"));
             });
+
+            services.AddIdentityConfiguration(_configuration);
 
             services.AddAutoMapper(typeof(Startup));
             services.AddControllers();

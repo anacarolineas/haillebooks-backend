@@ -16,6 +16,7 @@ namespace Halle.Business.Entities
         public IEnumerable<Category> Categories { get; set; }
         public IEnumerable<Author> Authors { get; set; }
         public IEnumerable<Tag> Tags { get; set; }
+        public IEnumerable<Favorite> Favorites { get; set; }
 
     }
 }

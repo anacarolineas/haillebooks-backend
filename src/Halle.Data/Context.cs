@@ -1,22 +1,20 @@
 ﻿using Halle.Business.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Halle.Data.Extensions;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Halle.Business.Interfaces;
 
-namespace Halle.Data.Context
+namespace Halle.Data
 {
-    public class Context : DbContext
+    public class Context : DbContext, IContext
     {
         public Context(DbContextOptions<Context> options) : base(options) { }
 
-        public DbSet<Book> Books { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Author> Authors { get; set; }
-        public DbSet<Tag> Tags { get; set; }
-        public DbSet<Favorite> Favorites { get; set; }
+        public DbSet<Book> Books { get; set; } = null!;
+        public DbSet<Category> Categories { get; set; } = null!;
+        public DbSet<Author> Authors { get; set; } = null!;
+        public DbSet<Tag> Tags { get; set; } = null!;
+        public DbSet<Favorite> Favorites { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -27,7 +25,8 @@ namespace Halle.Data.Context
                 property.SetColumnType("varchar(100)");
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(Context).Assembly);
-            
+
+            //desabilita delete cascade
             foreach (var relationship in modelBuilder.Model.GetEntityTypes()
                 .SelectMany(e => e.GetForeignKeys())) 
                 relationship.DeleteBehavior = DeleteBehavior.ClientSetNull;
