@@ -17,13 +17,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="Extensions\" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Halle.Business\Halle.Business.csproj" />
-    <ProjectReference Include="..\Halle.Data\Halle.Data.csproj" />
+    <ProjectReference Include="..\..\Halle.Application\Halle.Application.csproj" />
   </ItemGroup>
 
 </Project>
