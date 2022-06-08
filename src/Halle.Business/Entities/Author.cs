@@ -11,6 +11,10 @@ namespace Halle.Business.Entities
         public string Name { get; set; }
 
         /* EF Relations */
-        public IEnumerable<Book> Books { get; set; }
+        public IEnumerable<Book> Books { get; set; } = null!;
+
+        public Author(string name) =>
+            Name = name;
+ 
     }
 }

@@ -1,4 +1,7 @@
 ﻿using Halle.App.ViewModels;
+using Halle.Application.Interfaces;
+using Halle.Application.Services;
+using Halle.Application.Validations;
 using Halle.Business.Entities;
 using Halle.Business.Interfaces;
 using Halle.Data;
@@ -6,11 +9,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Halle.Business.Services
 {
-    public class AuthorService : IAuthorService
+    public class AuthorService : BaseService, IAuthorService
     {
         private readonly IContext _context;
 
-        public AuthorService(IContext context) => _context = context;
+        public AuthorService(
+            IContext context,
+            INotification notification) : base(notification)
+        {
+            _context = context;
+        }
 
         public async Task<IEnumerable<AuthorViewModel>> GetAuthors() =>
             await _context.Authors.AsNoTracking()
@@ -35,9 +43,26 @@ namespace Halle.Business.Services
             }).FirstOrDefaultAsync();
  
 
-        public Task CreateAuthor(AuthorViewModel author)
+        public async Task<bool> CreateAuthor(AuthorViewModel authorVm)
         {
-            throw new NotImplementedException();
+            if (!ValidateModel(new AuthorValidation(), authorVm)) return false;
+
+            if (AuthorExist(authorVm.Name).Result)
+            {
+                Notify("Author já existente.");
+                return false;
+            }
+
+            await _context.Authors.AddAsync(new Author(authorVm.Name));
+            await _context.SaveChangesAsync();
+
+            return true;
         }
+
+        private async Task<bool> AuthorExist(string name) =>
+            await _context.Authors.AsNoTracking()
+            .AnyAsync(x => x.Name == name);
+
+       
     }
 }

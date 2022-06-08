@@ -25,10 +25,17 @@ namespace Halle.Data
 
             //desabilita delete cascade
             foreach (var relationship in modelBuilder.Model.GetEntityTypes()
-                .SelectMany(e => e.GetForeignKeys())) 
+                .SelectMany(e => e.GetForeignKeys()))
                 relationship.DeleteBehavior = DeleteBehavior.ClientSetNull;
 
             base.OnModelCreating(modelBuilder);
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            // tratamentos aqui
+
+            await base.SaveChangesAsync();
         }
     }
 }

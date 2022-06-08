@@ -12,6 +12,6 @@ namespace Halle.Business.Interfaces
     {
         Task<IEnumerable<AuthorViewModel>> GetAuthors();
         Task<AuthorViewModel?> GetAuthorBooksById(Guid authorId);
-        Task CreateAuthor(AuthorViewModel author);
+        Task<bool> CreateAuthor(AuthorViewModel author);
     }
 }

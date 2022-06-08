@@ -1,4 +1,8 @@
-﻿using Halle.Data;
+﻿using Halle.Application.Interfaces;
+using Halle.Application.Notifications;
+using Halle.Business.Interfaces;
+using Halle.Business.Services;
+using Halle.Data;
 
 namespace Halle.App.Configuration
 {
@@ -8,6 +12,10 @@ namespace Halle.App.Configuration
         {
             //adicionar contexto, scoped interface -> class repository and service
             services.AddScoped<Context>();
+
+            services.AddScoped<IAuthorService, AuthorService>();
+            services.AddScoped<INotification, Notifier>();
+
             return services;
         }
     }
