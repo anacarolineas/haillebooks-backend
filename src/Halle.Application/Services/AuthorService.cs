@@ -31,6 +31,7 @@ namespace Halle.Business.Services
         public async Task<AuthorViewModel?> GetAuthorBooksById(Guid authorId) =>
             await _context.Authors.AsNoTracking()
             .Include(x => x.Books)
+            .Where(x => x.Id == authorId)
             .Select(x => new AuthorBookViewModel
             {
                 Id = x.Id,

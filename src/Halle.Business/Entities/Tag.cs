@@ -11,6 +11,17 @@ namespace Halle.Business.Entities
         public string Name { get; set; }
 
         /*EF Relations */
-        public IEnumerable<Book> Books { get; set; }
+        public IEnumerable<Book> Books { get; set; } = null!;
+
+        public Tag(Guid id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
+
+        public Tag(string name)
+        {
+            Name = name;
+        }
     }
 }

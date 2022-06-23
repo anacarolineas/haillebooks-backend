@@ -32,7 +32,7 @@ namespace Halle.App.Controllers
         [HttpPost]
         public async Task<ActionResult> CreateAuthor(AuthorViewModel author)
         {
-            if (!ModelState.IsValid) return BadRequest(); //trocar pra um custom response depois
+            if (!ModelState.IsValid) return BadRequest(); 
 
             var result = await _authorService.CreateAuthor(author);
 
