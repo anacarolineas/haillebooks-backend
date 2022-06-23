@@ -10,5 +10,7 @@ namespace Halle.Data
         public DbSet<Author> Authors { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Favorite> Favorites { get; set; }
+
+        public Task SaveChangesAsync();
     }
 }
