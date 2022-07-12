@@ -35,38 +35,31 @@ namespace Halle.Application.Services
                     Name = x.Name,
                 }).ToListAsync();
 
-        public async Task<bool> CreateTag(TagViewModel tag)
+        public async Task CreateTag(TagViewModel tag)
         {
             var tagExist = await _context.Tags.AsNoTracking()
                 .AnyAsync(x => x.Name == tag.Name);
 
-            if (tagExist)
-            {
-                Notify("Tag já existente.");
-                return false;
-            }
+            if (tagExist) throw new Exception("Tag já existente."); //rever
 
             await _context.Tags.AddAsync(new Tag(tag.Name));
             await _context.SaveChangesAsync();
-
-            return true;
         }
 
         public async Task UpdateTag(Guid tagId, string tagName)
         {
             var tag = await TagExist(tagId);
-            if (tag == null) return;
 
             tag.Name = tagName;
+            var tagModel = new Tag(tag.Id, tag.Name);
 
-            _context.Tags.Update(tag);
+            _context.Tags.Update(tagModel);
             await _context.SaveChangesAsync();
         }
 
         public async Task DeleteTag(Guid tagId)
         {
             var tag = await TagExist(tagId);
-            if (tag == null) return;
 
             _context.Tags.Remove(new Tag(tag.Id, tag.Name));
             await _context.SaveChangesAsync();
@@ -79,15 +72,11 @@ namespace Halle.Application.Services
                     Name = x.Name}
                 ).FirstOrDefaultAsync(x => x.Id == tagId);
 
-        private async Task<TagViewModel?> TagExist(Guid tagId)
+        private async Task<TagViewModel> TagExist(Guid tagId)
         {
             var tag = await GetTagById(tagId);
 
-            if (tag == null)
-            {
-                Notify("Tag não encontrada.");
-                return null;
-            }
+            if (tag == null) throw new Exception("Tag não encontrada."); //rever
 
             return tag;
         }
