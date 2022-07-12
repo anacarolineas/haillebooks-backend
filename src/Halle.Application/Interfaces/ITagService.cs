@@ -11,7 +11,7 @@ namespace Halle.Application.Interfaces
     {
         Task<TagViewModel?> GetTag(Guid tagId);
         Task<IEnumerable<TagViewModel>> SearchTag(string tagName);
-        Task<bool> CreateTag(TagViewModel tag);
+        Task CreateTag(TagViewModel tag);
         Task UpdateTag(Guid tagId, string tagName);
         Task DeleteTag(Guid tagId);
     }

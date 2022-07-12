@@ -48,11 +48,8 @@ namespace Halle.Business.Services
         {
             if (!ValidateModel(new AuthorValidation(), authorVm)) return false;
 
-            if (AuthorExist(authorVm.Name).Result)
-            {
-                Notify("Author já existente.");
-                return false;
-            }
+            var authorExit = await AuthorExist(authorVm.Name);
+            if (authorExit) throw new Exception("Author já existente."); //rever depois, criar exception específica
 
             await _context.Authors.AddAsync(new Author(authorVm.Name));
             await _context.SaveChangesAsync();

@@ -16,17 +16,17 @@ namespace Halle.App.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<AuthorViewModel>> GetAuthors() =>
-            await _authorService.GetAuthors();
+        public async Task<ActionResult> GetAuthors() =>
+            Ok(await _authorService.GetAuthors());
 
         [HttpGet("{id:guid}")]
         public async Task<ActionResult<AuthorViewModel>> GetAuthor(Guid authorId)
         {
-            var author = await _authorService.GetAuthorBooksById(authorId);
+            var result = await _authorService.GetAuthorBooksById(authorId);
 
-            if (author == null) return NotFound();
+            if (result == null) return NotFound();
 
-            return author;
+            return Ok(result);
         }
 
         [HttpPost]

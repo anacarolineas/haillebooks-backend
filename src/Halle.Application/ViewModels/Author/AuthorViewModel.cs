@@ -8,6 +8,6 @@
 
     public class AuthorBookViewModel : AuthorViewModel
     {
-        public IEnumerable<BookViewModel> Books { get; set; }
+        public IEnumerable<BookViewModel> Books { get; set; } = null!;
     }
 }
